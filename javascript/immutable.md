@@ -23,9 +23,13 @@ const b = a + " world";
 
 이 과정을 자세히 살펴본다면 **변수 a 에 " world" 라는 문자열을 더하여** b 에 대입하고 있다.
 
-정확히는 **변수 a 에 " world"를 더한 변수를 만들고** (=> "hello wolrd") 그 변수를 b 에 대입하는 것이다.
+정확히는 **" world"를 만들고(1) 더하고("hello wolrd")(2) 그 변수를 b 에 대입(3)**하는 것이다.
 
-문자열은 불변객체이기 때문에 새로운 변수를 할당하는 과정이 발생한다.
+문자열은 불변객체이기 때문에 새로운 변수를 할당하는 과정이 발생하는 것이다.
+
+
+
+![](/heap.png)
 
 
 
@@ -58,3 +62,42 @@ Immutable.js 는 불변의 데이터 구조를 제공한다.
 
 또한 불변성을 추구하는 Redux 의 요구에도 만족한다.
 
+
+
+사용법
+
+```
+npm install immutable
+```
+
+```
+import { Map } from "Immutable"; // Map, Stack, List 다양하게 지원한다.
+
+const map1 = Map({ a: 1, b: 2, c: 3 }); // Map() 으로 감싸고 선언한다.
+
+// immutable.js 의 명령어를 따라야한다.
+console.log(map1.a); // undefined
+console.log(map1.get("a")); // 1
+
+map1.d = 5 // 실제로 반영되진 않는다.
+console.log(map1); // Map { "a": 1, "b": 2, "c": 3 }
+map1.set("d", 5); // Map { "a": 1, "b": 2, "c": 3, "d": 5 }
+// 기존의 데이터를 수정하는 것이 아니라 새롭게 할당되어 적용된다.
+
+// 예시
+console.log(map1);
+> Map { "a": 1, "b": 2, "c": 3 }
+const map2 = map1.set("d", 5); // map1 에 d 를 대입한 것 처럼 보이지만
+console.log(map1);
+> Map { "a": 1, "b": 2, "c": 3 } // 실제로는 map1 이 가리키는 객체는 변화가 없고
+console.log(map2);
+> Map { "a": 1, "b": 2, "c": 3, "d": 5 } // 재할당이 발생하여 map2 에 적용된다.
+```
+
+
+
+사용법이 어렵지 않으니 자세한건 사이트에서 직접 확인하면 된다.
+
+[Immutable.js](https://facebook.github.io/immutable-js/)
+
+[github/immutable](https://github.com/facebook/immutable-js/)
