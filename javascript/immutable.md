@@ -29,7 +29,7 @@ const b = a + " world";
 
 
 
-![](/heap.png)
+<image src="heap.png" width="480px" />
 
 
 
@@ -83,10 +83,11 @@ map1.d = 5 // 실제로 반영되진 않는다.
 console.log(map1); // Map { "a": 1, "b": 2, "c": 3 }
 map1.set("d", 5); // Map { "a": 1, "b": 2, "c": 3, "d": 5 }
 // 기존의 데이터를 수정하는 것이 아니라 새롭게 할당되어 적용된다.
+```
 
+```
 // 예시
-console.log(map1);
-> Map { "a": 1, "b": 2, "c": 3 }
+const map1 = Map({ "a": 1, "b": 2, "c": 3 });
 const map2 = map1.set("d", 5); // map1 에 d 를 대입한 것 처럼 보이지만
 console.log(map1);
 > Map { "a": 1, "b": 2, "c": 3 } // 실제로는 map1 이 가리키는 객체는 변화가 없고
